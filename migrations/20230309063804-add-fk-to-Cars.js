@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up (queryInterface, Sequelize) {
-    return queryInterface.addColumn('Cars', 'ModelId', {
+    return queryInterface.addColumn('Cars', 'ModelCarId', {
       type: Sequelize.DataTypes.INTEGER,
       references: {
         model: 'ModelCars',

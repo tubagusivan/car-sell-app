@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "ModelId": 1,
+    "ModelCarId": 1,
     "name": "Toyota Rush 2018",
     "year": 2018,
     "color": "Merah",
@@ -20,7 +20,7 @@
   },
   {
     "id": 2,
-    "ModelId": 2,
+    "ModelCarId": 2,
     "name": "Honda CRV Prestige 2017",
     "year": 2017,
     "color": "Putih",
@@ -39,7 +39,7 @@
   },
   {
     "id": 3,
-    "ModelId": 3,
+    "ModelCarId": 3,
     "name": "Mitsubishi Xpander 2019",
     "year": 2019,
     "color": "Putih",
@@ -58,7 +58,7 @@
   },
   {
     "id": 4,
-    "ModelId": 4,
+    "ModelCarId": 4,
     "name": "Suzuki Jimny 2020",
     "year": 2020,
     "color": "Biru",
@@ -77,7 +77,7 @@
   },
   {
     "id": 5,
-    "ModelId": 5,
+    "ModelCarId": 5,
     "name": "Mazda Cx-5 2019",
     "year": 2019,
     "color": "Merah",
