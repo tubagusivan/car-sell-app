@@ -20,16 +20,20 @@ app.get('/login',UserController.loginform)
 app.post('/login',UserController.postLogin)
 app.get('/logout', UserController.getLogout)
 
+
 // app.use(
   const login = (req, res, next) => {
-  if(!req.session.userId){
-    const error = " Silahkan Login Dahulu"
-    res.redirect(`/login?error=${error}`)
-  }else {
-    next()
+    if(!req.session.userId){
+      const error = " Silahkan Login Dahulu"
+      res.redirect(`/login?error=${error}`)
+    }else {
+      next()
+    }
   }
-}
-// )
+  // )
+  app.get('/profile',login, UserController.addProfile)
+  app.post('/profile', UserController.postProfile)
+  app.get('/profile/detail/:id', UserController.profileDetail)
 
 app.get('/', Controller.home)
 app.get('/cars',login, Controller.cars)
