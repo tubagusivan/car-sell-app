@@ -13,9 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Car.belongsTo(models.ModelCar)
       Car.hasMany(models.UserCar)
+      Car.belongsTo(models.Brand)
     }
   }
   Car.init({
+    BrandId: DataTypes.INTEGER,
     ModelCarId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     year: DataTypes.STRING,
