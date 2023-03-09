@@ -18,13 +18,14 @@
     <div class="container-fluid row row-cols-1 row-cols-md-5 g-4">
         <% data.forEach((el) => { %>
         <div class="col">
+            <p><strong>Posted on: <%= formatDate(el.createdAt) %></strong></p>
             <div class="card" style="width: 18rem;">
                 <img src="<%= el.photo1 %>" class="card-img-top" alt="img-car">
                 <div class="card-body">
                     <h5 class="card-title"><%= el.name%></h5>
                     <p class="card-text"><%= el.formatRupiah() %></p>
                     <p class="card-text"><%= el.description %></p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="/cars/detail/<%= el.id %>" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
         </div>

@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       Brand.hasMany(models.ModelCar)
       Brand.hasMany(models.Car)
     }
+
+    static getBrandModelCar() {
+      return Brand.findAll({
+          include: sequelize.models.ModelCar
+      })
+    }
   }
   Brand.init({
     name: DataTypes.STRING
