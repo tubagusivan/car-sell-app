@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "BrandId": 1,
+    "name": "Rush"
+  },
+  {
+    "id": 2,
+    "BrandId": 2,
+    "name": "CRV"
+  },
+  {
+    "id": 3,
+    "BrandId": 3,
+    "name": "Xpander"
+  },
+  {
+    "id": 4,
+    "BrandId": 4,
+    "name": "Jimny"
+  },
+  {
+    "id": 5,
+    "BrandId": 5,
+    "name": "Cx-5"
+  }
+]
