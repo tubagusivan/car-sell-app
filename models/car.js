@@ -4,11 +4,13 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Car extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
+    formatRupiah() {
+      return new Intl.NumberFormat('id-ID',
+        { style: 'currency', currency: 'IDR' }
+      ).format(this.price);
+    }
+
     static associate(models) {
       // define association here
       Car.belongsTo(models.ModelCar)
@@ -38,5 +40,10 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Car',
   });
+
+  Car.beforeCreate((el) => {
+    el.status = 'on listing'
+    el.soldDate = new Date('1970-01-01')
+  })
   return Car;
 };

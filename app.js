@@ -12,6 +12,8 @@ app.get('/cars', Controller.cars)
 
 app.get('/add', Controller.addRender)
 
+app.post('/add', Controller.addHandler)
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
