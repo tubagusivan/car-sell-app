@@ -30,7 +30,7 @@ class Controller {
                 include:Profile     
         }).then((dataUser)=>{
             datas.user = dataUser
-            res.render('cars', { data :datas })
+            res.render('cars', { data :datas ,formatDate })
         })   
             
         })
