@@ -36,14 +36,13 @@ app.get('/logout', UserController.getLogout)
   app.get('/profile/detail/:id', UserController.profileDetail)
 
 app.get('/', Controller.home)
-
 app.get('/cars',login, Controller.cars)
 // app.get('/buy', Controller.cars)
-
-
 app.get('/add', Controller.addRender)
-
 app.post('/add', Controller.addHandler)
+app.post('/addInspectionHandler/:id', Controller.addInspectionHandler)
+app.get('/cars/detail/:id', Controller.detailCar)
+app.get('/addInspectionRender/:id', Controller.addInspectionRender)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

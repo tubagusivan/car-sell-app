@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "Namikaze008",
+    "password": "postgres",
     "database": "car_sell_app_db",
     "host": "127.0.0.1",
     "dialect": "postgres"

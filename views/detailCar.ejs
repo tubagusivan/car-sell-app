@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Car Sell App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+        <h3>Car Detail</h3>
+
+        <h3>Brand Name: <%= data.Brand.name %> | Model Car: <%= data.ModelCar.name %></h3>
+
+        <div class="container text-center">
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+            <div class="col">
+                <div class="p-3 border bg-light">
+                    <img src="<%= data.photo1 %>" class="card-img-top" alt="img-car">
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border bg-light">
+                    <img src="<%= data.photo2 %>" class="card-img-top" alt="img-car">
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border bg-light">
+                    <img src="<%= data.photo3 %>" class="card-img-top" alt="img-car">
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border bg-light">
+                    <img src="<%= data.photo3 %>" class="card-img-top" alt="img-car">
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <label>Car Name:</label>
+        <p><%= data.name %></p>
+        <label>Year:</label>
+        <p><%= data.year %></p>
+        <label>Color:</label>
+        <p><%= data.color %></p>
+        <label>Fuel:</label>
+        <p><%= data.fuel %></p>
+        <label>Transmission:</label>
+        <p><%= data.transmission %></p>
+        <label>Car Tax:</label>
+        <p><%= data.carTax %></p>
+        <label>Kilometer:</label>
+        <p><%= data.kilometer %></p>
+        <label>Description:</label>
+        <p><%= data.description %></p>
+        <label>Status</label>
+        <p><%= data.status %></p>
+        <p>Ingin jadwalkan inspeksi?</p>
+        <input type="button" value="Ya, saya ingin" onclick="location.href='/addInspectionRender/<%=data.id%>'">
+        <input type="button" value="Tidak, terima kasih" onclick="location.href='/cars'">
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>

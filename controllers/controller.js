@@ -1,4 +1,5 @@
 const { Op } = require('sequelize')
+const formatDate = require('../helpers/formatDate')
 const { Brand, Car, ModelCar, Profile, User, UserCar } = require('../models/index')
 
 class Controller {
@@ -40,9 +41,7 @@ class Controller {
     }
 
     static addRender (req, res) {
-        Brand.findAll({
-            include: ModelCar
-        })
+        Brand.getBrandModelCar()
         .then((data) => {
             // res.send(data)
             res.render('addRender', { data })
@@ -58,11 +57,51 @@ class Controller {
 
         Car.create({ BrandId, ModelCarId, name, year, color, fuel, transmission, carTax, kilometer, description, price, status, soldDate, photo1, photo2, photo3, photo4 })
         .then((data) => {
-            // res.send(data)
             res.redirect('/cars')
         })
         .catch((err) => {
-            console.log(err);
+            res.send(err)
+        })
+    }
+
+    static detailCar (req, res) {
+        const { id } = req.params
+        Car.findByPk(id, {
+            include: [ ModelCar, Brand ]
+        })
+        .then((data) => {
+            // res.send(data)
+            res.render('detailCar', { data })
+        })
+        .catch((err) => {
+            res.send(err)
+        })
+    }
+
+    static addInspectionRender (req, res) {
+        const { id } = req.params
+        res.render('addInspectionRender', { id })
+    }
+
+    static addInspectionHandler (req, res) {
+        const { id } = req.params
+        const UserId = req.session.userId
+        const { time, location, description, status } = req.body
+        // console.log(UserId, CarId, time, location, description, status);
+        // res.send('hello')
+        UserCar.create({
+            CarId: id,
+            UserId,
+            time, 
+            location, 
+            description, 
+            status
+        })
+        .then((data) => {
+            // res.send(data)
+            res.redirect(`/cars/detail/${id}`)
+        })
+        .catch((err) => {
             res.send(err)
         })
     }
