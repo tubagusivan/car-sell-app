@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.belongsTo(models.Profile)
+      User.hasOne(models.Profile)
       User.hasMany(models.UserCar)
     }
   }
@@ -57,8 +57,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    role: DataTypes.STRING,
-    ProfileId: DataTypes.INTEGER
+    role: DataTypes.STRING
   }, {
     hooks: {
       beforeCreate(instance, options){
@@ -66,7 +65,6 @@ module.exports = (sequelize, DataTypes) => {
         const hash = bcrypt.hashSync(instance.password, salt);
         instance.password = hash
         instance.role = "user"
-        instance.ProfileId = instance.id
       }
     },
     sequelize,

@@ -7,6 +7,7 @@ class Controller {
     }
 
     static cars (req, res) {
+        const userId = req.session.userId
         const { search } = req.query
         let options = {
             include: [ ModelCar ],
@@ -15,10 +16,22 @@ class Controller {
         if (search) {
             options.where.name = { [ Op.iLike ] : `%${search}%` }
         }
+
+        let datas = {}
         Car.findAll(options)
         .then((data) => {
             // res.send(data)
-            res.render('cars', { data })
+            datas.car = data
+            return  User.findOne({ 
+                where:{
+                    id: userId,   
+                },
+                include:Profile     
+        }).then((dataUser)=>{
+            datas.user = dataUser
+            res.render('cars', { data :datas })
+        })   
+            
         })
         .catch((err) => {
             console.log(err);
