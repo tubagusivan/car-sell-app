@@ -5,7 +5,16 @@ class Controller {
         res.send('home')
     }
     static cars (req, res) {
-        res.send('cars')
+        Car.findAll({
+            include: [ ModelCar ]
+        })
+        .then((data) => {
+            res.send(data)
+        })
+        .catch((err) => {
+            console.log(err);
+            res.send(err)
+        })
     }
 }
 
