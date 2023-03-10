@@ -34,7 +34,7 @@ app.get('/logout', UserController.getLogout)
   }
   // )
   const loginAdmin = (req, res, next) => {
-    if(req.session.userId && req.session.role === "admin"){
+    if(req.session.role === "admin"){
       const error = " kamu tidak dapat mengkases ini"
       res.redirect(`/login?error=${error}`)
     }else {
@@ -43,9 +43,8 @@ app.get('/logout', UserController.getLogout)
   }
   app.get('/profileForm',login, UserController.addProfile)
   app.post('/profileForm',login, UserController.postProfile)
-  app.get('/profile/:id',login,UserController.editProfile)
-  app.post('/profile/:id',login,UserController.editProfilePost)
-  app.get('/admin', UserController.admin)
+
+  app.get('/admin',loginAdmin, UserController.admin)
 
   app.get('/deleteUser/:id', UserController.delete)
 
@@ -57,6 +56,8 @@ app.post('/add', Controller.addHandler)
 app.post('/addInspectionHandler/:id', Controller.addInspectionHandler)
 app.get('/cars/detail/:id', Controller.detailCar)
 app.get('/addInspectionRender/:id', Controller.addInspectionRender)
+app.get('/profile/:id',login,UserController.editProfile)
+app.post('/profile/:id',login,UserController.editProfilePost)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

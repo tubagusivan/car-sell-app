@@ -11,16 +11,20 @@
     <nav class="navbar navbar-dark bg-primary sticky-top">
       <!-- Navbar content -->
       <div class="container-fluid">
+        
+        <% if (data.user.Profile) { %>
+     
+          <% }else{ %>
+            <a class="navbar-brand" href="/profileForm"><strong>Tambahkan Profile</strong></a>
+ 
+          <%} %>
+        <a class="navbar-brand" href="/logout"><strong>Log Out</strong></a>
         <a class="navbar-brand" href="/"><strong>Car Sell App</strong></a>
       </div>
+      
     </nav>
 
-    <% if (data.user.Profile) { %>
-     
-      <% }else{ %>
-  
-        <a href="/profile"> Tambahkan Profile </a>
-      <%} %>
+ 
 
 
     <div class="container-fluid">
