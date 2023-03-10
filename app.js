@@ -33,9 +33,21 @@ app.get('/logout', UserController.getLogout)
     }
   }
   // )
-  app.get('/profile',login, UserController.addProfile)
-  app.post('/profile', UserController.postProfile)
-  app.get('/profile/detail/:id', UserController.profileDetail)
+  const loginAdmin = (req, res, next) => {
+    if(req.session.userId && req.session.role === "admin"){
+      const error = " kamu tidak dapat mengkases ini"
+      res.redirect(`/login?error=${error}`)
+    }else {
+      next()
+    }
+  }
+  app.get('/profileForm',login, UserController.addProfile)
+  app.post('/profileForm',login, UserController.postProfile)
+  app.get('/profile/:id',login,UserController.editProfile)
+  app.post('/profile/:id',login,UserController.editProfilePost)
+  app.get('/admin', UserController.admin)
+
+  app.get('/deleteUser/:id', UserController.delete)
 
 app.get('/', Controller.home)
 app.get('/cars',login, Controller.cars)

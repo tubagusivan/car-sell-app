@@ -35,7 +35,9 @@ class UserController{
             if(user) {
                 const isValidPassword = bcrypt.compareSync(password, user.password)
                 if(isValidPassword){
+                    // console.log(user);
                     req.session.userId = user.id
+                    req.session.role = user.role
                     return res.redirect('/')
                 } 
                 else {
@@ -48,6 +50,7 @@ class UserController{
             }
         })
         .catch(err => {
+            console.log(err);
             res.send(err)
         })
     }
@@ -68,18 +71,19 @@ class UserController{
             where : {id : userId}
         })
         .then((data) => {
-            res.render('profile', {data})
+            res.render('addProfile', {data})
         })
         .catch((err) => {
+            console.log(err);
             res.send(err)
         })
     }
 
     static postProfile(req,res) {
         const userId = req.session.userId
-        const { firstName, lastName, address, age, phone} = req.body 
+        const { firstName, lastName, address, age, phone, photo} = req.body 
         Profile.create({
-            firstName, lastName, address, age, phone, UserId : userId   
+            firstName, lastName, address, age, phone,photo, UserId : userId   
         })
         .then(() => {
             res.redirect('/cars')
@@ -90,13 +94,61 @@ class UserController{
         })
     }
 
-    static profileDetail(req,res){
-         const { id } = req.param
-         Profile.findOne({
-            where : id
+    static editProfile(req,res){
+        const { id } = req.params
+        Profile.findAll({
+            where : { id }
         })
-        .then()
+        .then((data) => {
+            // console.log(data);
+            res.render('profile', {data})
+        })
+        .catch((err) => {
+            console.log(err);
+            res.send(err)
+        })
     }
+
+    static editProfilePost(req,res){
+        const { id } = req.params
+        const { firstName, lastName ,address, age, phone,photo } = req.body
+        Profile.update({firstName, lastName ,address, age, phone, photo}, {
+            where : { id }
+        })
+        .then(() => {
+            res.redirect(`/`)
+        })
+        .catch((err) => {
+            res.send(err)
+        })
+    }
+
+    static admin(req,res){
+        User.findAll()
+        .then((data) => {
+            // console.log(data);
+            res.render('admin', {data})
+        })
+        .catch((err)=> {
+            res.send(err)
+        })
+    }
+
+    static delete(req,res) {
+        const { id } = req.params
+        User.destroy({
+            where: { id }
+        })
+        .then(() => {
+            res.redirect('/admin')
+        })
+        .catch((err) => {
+            res.send(err)
+        })
+      }
+
+
+
 }
 
 module.exports = UserController
