@@ -5,7 +5,8 @@ class UserController{
 
 
     static registerForm(req,res){
-        res.render('register')
+        const error = req.query.error
+        res.render('register',{error})
     }
 
     static postRegister(req,res){
@@ -17,8 +18,14 @@ class UserController{
             res.redirect(`/login`)
         })
         .catch((err) => {
-            console.log(err)
-            res.send(err)
+            if (err.name === "SequelizeValidationError") {
+                let error = err.errors.map((el)=>{
+                    return el.message
+                })
+                res.redirect(`/register/?error=${error}`)
+            }else {
+                res.send(err)
+            }
         })
     }
     static loginform(req,res){
@@ -89,8 +96,14 @@ class UserController{
             res.redirect('/cars')
         })
         .catch((err) => {
-            console.log(err);
-            res.send(err)
+            if (err.name === "SequelizeValidationError") {
+                let error = err.errors.map((el)=>{
+                    return el.message
+                })
+                res.redirect(`/profileForm/?error=${error}`)
+            }else {
+                res.send(err)
+            }
         })
     }
 
