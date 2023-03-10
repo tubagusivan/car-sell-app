@@ -85,6 +85,7 @@ class UserController{
             res.redirect('/cars')
         })
         .catch((err) => {
+            console.log(err);
             res.send(err)
         })
     }
