@@ -19,23 +19,210 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Car.init({
-    BrandId: DataTypes.INTEGER,
-    ModelCarId: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    year: DataTypes.STRING,
-    color: DataTypes.STRING,
-    fuel: DataTypes.STRING,
-    transmission: DataTypes.STRING,
-    carTax: DataTypes.DATE,
-    kilometer: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    price: DataTypes.INTEGER,
-    status: DataTypes.STRING,
-    soldDate: DataTypes.DATE,
-    photo1: DataTypes.STRING,
-    photo2: DataTypes.STRING,
-    photo3: DataTypes.STRING,
-    photo4: DataTypes.STRING
+    BrandId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'BrandId is required!'
+        },
+        notEmpty: {
+          msg: 'BrandId is required!'
+        }
+      }
+    },
+    ModelCarId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'ModelCarId is required!'
+        },
+        notEmpty: {
+          msg: 'ModelCarId is required!'
+        }
+      }
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Name is required!'
+        },
+        notEmpty: {
+          msg: 'Name is required!'
+        }
+      }
+    },
+    year: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Year is required!'
+        },
+        notEmpty: {
+          msg: 'Year is required!'
+        }
+      }
+    },
+    color: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Color is required!'
+        },
+        notEmpty: {
+          msg: 'Color is required!'
+        }
+      }
+    },
+    fuel: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Fuel is required!'
+        },
+        notEmpty: {
+          msg: 'Fuel is required!'
+        }
+      }
+    },
+    transmission: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Transmission is required!'
+        },
+        notEmpty: {
+          msg: 'Transmission is required!'
+        }
+      }
+    },
+    carTax: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Car Tax is required!'
+        },
+        notEmpty: {
+          msg: 'Car Tax is required!'
+        }
+      }
+    },
+    kilometer: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Kilometer is required!'
+        },
+        notEmpty: {
+          msg: 'Kilometer is required!'
+        }
+      }
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Description is required!'
+        },
+        notEmpty: {
+          msg: 'Description is required!'
+        }
+      }
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Price is required!'
+        },
+        notEmpty: {
+          msg: 'Price is required!'
+        }
+      }
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Status is required!'
+        },
+        notEmpty: {
+          msg: 'Status is required!'
+        }
+      }
+    },
+    soldDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Sold Date is required!'
+        },
+        notEmpty: {
+          msg: 'Sold Date is required!'
+        }
+      }
+    },
+    photo1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Photo1 is required!'
+        },
+        notEmpty: {
+          msg: 'Photo1 is required!'
+        }
+      }
+    },
+    photo2: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Photo2 is required!'
+        },
+        notEmpty: {
+          msg: 'Photo2 is required!'
+        }
+      }
+    },
+    photo3: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Photo3 is required!'
+        },
+        notEmpty: {
+          msg: 'Photo3 is required!'
+        }
+      }
+    },
+    photo4: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Photo4 is required!'
+        },
+        notEmpty: {
+          msg: 'Photo4 is required!'
+        }
+      }
+    },
   }, {
     sequelize,
     modelName: 'Car',

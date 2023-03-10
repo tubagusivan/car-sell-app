@@ -7,6 +7,8 @@ const port = 3000
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
+app.use(express.static(__dirname + '/views'));
+
 app.use(session({
   secret: 'hubla',
   resave: false,
@@ -49,7 +51,7 @@ app.get('/logout', UserController.getLogout)
 
 app.get('/', Controller.home)
 app.get('/cars',login, Controller.cars)
-// app.get('/buy', Controller.cars)
+app.get('/mapView', Controller.mapView)
 app.get('/add', Controller.addRender)
 app.post('/add', Controller.addHandler)
 app.post('/addInspectionHandler/:id', Controller.addInspectionHandler)

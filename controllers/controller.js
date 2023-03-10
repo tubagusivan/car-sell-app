@@ -1,6 +1,7 @@
 const { Op } = require('sequelize')
 const formatDate = require('../helpers/formatDate')
 const { Brand, Car, ModelCar, Profile, User, UserCar } = require('../models/index')
+const moment = require('moment')
 
 class Controller {
     static home (req, res) {
@@ -30,7 +31,7 @@ class Controller {
                 include:Profile     
         }).then((dataUser)=>{
             datas.user = dataUser
-            res.render('cars', { data :datas ,formatDate })
+            res.render('cars', { data :datas, formatDate })
         })   
             
         })
@@ -47,7 +48,6 @@ class Controller {
             res.render('addRender', { data })
         })
         .catch((err) => {
-            console.log(err);
             res.send(err)
         })
     }
@@ -60,18 +60,30 @@ class Controller {
             res.redirect('/cars')
         })
         .catch((err) => {
-            res.send(err)
+            if (err.name == 'SequelizeValidationError') {
+                let errors = err.errors.map((el) => {
+                    return el.message
+                })
+                res.send(errors)                
+            } else {
+                res.send(err)
+            }
         })
     }
 
     static detailCar (req, res) {
         const { id } = req.params
+        let selectedData;
         Car.findByPk(id, {
             include: [ ModelCar, Brand ]
         })
         .then((data) => {
             // res.send(data)
-            res.render('detailCar', { data })
+            selectedData = data
+            return User.findAll()
+        })
+        .then((dataUser) => {
+            res.render('detailCar', { data: selectedData, dataUser, moment })
         })
         .catch((err) => {
             res.send(err)
@@ -102,6 +114,21 @@ class Controller {
             res.redirect(`/cars/detail/${id}`)
         })
         .catch((err) => {
+            res.send(err)
+        })
+    }
+
+    static mapView(req, res) {
+        const UserId = req.session.userId
+        User.findByPk(UserId, {
+            include: Profile
+        })
+        .then((data) => {
+            // res.send(data)
+            res.render('mapView', { data })
+        })
+        .catch((err) => {
+            console.log(err);
             res.send(err)
         })
     }
